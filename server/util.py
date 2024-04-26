@@ -2,7 +2,7 @@ import pandas as pd
 import pickle
 import requests
 from sklearn.metrics.pairwise import cosine_similarity
-from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.feature_extraction.text import TfidfVectorizer, CountVectorizer
 
 __model = None
 __data = None
@@ -16,10 +16,15 @@ def loading_artifacts():
     __data = pd.read_csv("../model/data/top10K-TMDB-movies_with_tags.csv")
 
     global __model, __tfidf_matrix
-    __model = TfidfVectorizer(stop_words="english")
+    __model = CountVectorizer(stop_words="english")
     __tfidf_matrix = __model.fit_transform(__data['tags'])
 
     print("Loading Artifacts.. Done")
+
+
+def get_movie_names(txt):
+    txt_lower = txt.lower()  # Convert the search text to lowercase
+    return [title for title in __data["title"].tolist() if title.lower().startswith(txt_lower)]
 
 
 def fetch_poster(movie_id):
@@ -34,17 +39,19 @@ def fetch_poster(movie_id):
 def recommend(movie_title):
     movie_matrix = __model.transform(__data[__data.title == movie_title].tags)
     similarity_scores = cosine_similarity(movie_matrix, __tfidf_matrix)
-    top_similar_indices = similarity_scores.argsort()[0][::-1][:10]
+    top_similar_indices = similarity_scores.argsort()[0][::-1][:14]
     similar_movies_info = []
 
     for idx in top_similar_indices:
         movie_name = __data.iloc[idx]["title"]
         movie_id = int(__data.iloc[idx]["id"])
         poster_path = fetch_poster(movie_id)
+        movie_description = __data.iloc[idx]["tags"]
         similar_movies_info.append({
             "id": movie_id,
             "movie_name": movie_name,
-            "poster_path": poster_path
+            "poster_path": poster_path,
+            "description": movie_description
         })
 
     return similar_movies_info
