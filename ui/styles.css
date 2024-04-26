@@ -1,0 +1,162 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0;
+}
+
+#container {
+    width: 80%;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+#inputBox {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+#moviePosterContainer {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Responsive grid with minimum width for each column */
+    grid-gap: 10px; /* Gap between grid items */
+}
+
+.poster {
+    width: 100%; /* Ensure poster fills the grid cell */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add box shadow to each poster */
+    transition: transform 0.2s, box-shadow 0.2s; /* Add transition for smoother hover effect */
+}
+
+.poster:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Apply box shadow on hover */
+    transform: translateY(-5px); /* Move the poster slightly upwards on hover */
+}
+
+.poster:nth-child(odd) {
+    transform: translateY(-10px); /* Move odd posters slightly up */
+}
+
+.poster:nth-child(even) {
+    transform: translateY(10px); /* Move even posters slightly down */
+}
+
+.poster img {
+    max-width: 100%;
+    max-height: 100%; /* Prevent image overflow */
+}
+
+.poster p {
+    text-align: center;
+    margin-top: 5px;
+}
+
+.suggestion-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    max-height: 200px; /* Fixed height for the list */
+    overflow-y: auto; /* Enable vertical scrolling */
+    position: relative; /* Required for positioning the arrow */
+}
+
+.suggestion-list li {
+    cursor: pointer;
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.suggestion-list li:hover {
+    background-color: #f0f0f0;
+}
+
+/* Arrow styling */
+.suggestion-list::after {
+    content: '\25BC'; /* Downward arrow character */
+    position: absolute;
+    top: 0;
+    right: 5px;
+    visibility: hidden; /* Initially hidden */
+}
+
+.suggestion-list:hover::after {
+    visibility: visible; /* Show the arrow when the list is hovered */
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.modal-close {
+    cursor: pointer;
+    font-size: 20px;
+    color: #aaa;
+}
+
+.modal-close:hover {
+    color: #666;
+}
+
+.modal-content {
+    display: flex;
+}
+
+.modal-poster,
+.modal-details {
+    width: 50%;
+    padding: 20px;
+}
+
+.modal-poster img {
+    max-width: 100%;
+    height: auto;
+}
+
+.modal-details h2 {
+    margin-top: 0;
+}
+
+.modal-details p {
+    margin-bottom: 10px;
+}
+
+.modal-close {
+    cursor: pointer;
+    font-size: 20px;
+    color: #aaa;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+.modal-close:hover {
+    color: #666;
+}
