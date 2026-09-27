@@ -16,3 +16,6 @@ htmlcov/
 # IDE
 .vscode/
 .idea/
+
+# ML artifacts
+artifacts/*.joblib
