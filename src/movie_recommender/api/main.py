@@ -1,3 +1,4 @@
+import os
 from pathlib import Path
 
 from fastapi import FastAPI, HTTPException
@@ -11,8 +12,9 @@ from movie_recommender.services.recommendation import (
 )
 
 
-ROOT_DIR = Path(__file__).resolve().parents[3]
-ARTIFACTS_DIR = ROOT_DIR / "artifacts"
+ARTIFACTS_DIR = Path(
+    os.getenv("ARTIFACTS_DIR", "artifacts")
+)
 
 
 app = FastAPI(
