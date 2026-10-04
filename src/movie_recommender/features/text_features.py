@@ -1,5 +1,6 @@
 from sklearn.feature_extraction.text import TfidfVectorizer
 
+
 class MovieFeatureBuilder:
     """Build text features from movie metadata."""
 

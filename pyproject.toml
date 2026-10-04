@@ -16,6 +16,7 @@ dependencies = [
     "joblib",
     "scipy",
     "pyarrow",
+    "pyyaml",
 ]
 
 [project.optional-dependencies]
@@ -23,7 +24,10 @@ dev = [
     "pytest",
     "pytest-cov",
     "ruff",
+    "httpx2",
 ]
+
+mlops = ["mlflow>=3", "dvc>=3"]
 
 api = [
     "fastapi",
@@ -37,5 +41,6 @@ where = ["src"]
 pythonpath = ["src"]
 
 [tool.ruff]
+select = ["E", "F", "I"]
 line-length = 88
 target-version = "py310"

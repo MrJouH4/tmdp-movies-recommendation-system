@@ -16,3 +16,9 @@ artifacts
 
 .ipynb_checkpoints
 *.ipynb
+
+mlflow.db
+mlruns
+mlartifacts
+build
+.dvc
