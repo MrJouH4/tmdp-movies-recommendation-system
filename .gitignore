@@ -27,3 +27,5 @@ mlartifacts/
 
 # Training candidate that has not been promoted
 build/
+
+.ci-venv/
