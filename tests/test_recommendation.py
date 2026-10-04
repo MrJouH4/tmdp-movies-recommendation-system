@@ -7,9 +7,7 @@ from movie_recommender.services.recommendation import (
 )
 
 
-def test_recommendation_service_returns_recommendations() -> None:
-    artifacts_dir = Path("artifacts")
-
+def test_recommendation_service_returns_recommendations(artifacts_dir: Path) -> None:
     service = RecommendationService(artifacts_dir)
 
     movie_title = service.movies.iloc[0]["title"]

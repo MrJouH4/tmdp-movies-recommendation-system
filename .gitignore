@@ -19,3 +19,11 @@ htmlcov/
 
 # ML artifacts
 artifacts/*.joblib
+
+# MLflow (local tracking backend and artifact store)
+mlflow.db
+mlruns/
+mlartifacts/
+
+# Training candidate that has not been promoted
+build/

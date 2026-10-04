@@ -11,7 +11,6 @@ from movie_recommender.services.recommendation import (
     RecommendationService,
 )
 
-
 ARTIFACTS_DIR = Path(
     os.getenv("ARTIFACTS_DIR", "artifacts")
 )

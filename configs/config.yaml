@@ -1,0 +1,23 @@
+data:
+  raw_path: data/raw/movies.csv
+
+artifacts_dir: artifacts
+
+features:
+  max_features: 10000
+  ngram_range: [1, 2]
+
+evaluation:
+  top_k: 10
+  sample_size: 500
+  random_state: 42
+
+mlflow:
+  tracking_uri: sqlite:///mlflow.db
+  experiment_name: movie-recommender
+  registered_model_name: movie-recommender
+
+promotion:
+  metric: genre_precision_at_k
+  min_value: 0.70
+  tolerance: 0.0
